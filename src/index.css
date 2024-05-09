@@ -60,35 +60,51 @@ body {
 }
 
 .task-container {
-  width: 270px;
-  height: 40px;
-  border-left: 1.5px solid black;
-  border-right: 1.5px solid black;
-  border-bottom: 1.5px solid black;
+  width: auto;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  && > p {
-    width: 100px;
-  }
-
-  && > .button-container {
+  
+  && > .task-content {
+    height: 40px;
+    border-left: 1.5px solid black;
+    border-right: 1.5px solid black;
+    border-bottom: 1.5px solid black;
     display: flex;
-    gap: 5px;
-  }
+    align-items: center;
+    justify-content: space-around;
+    width: 200px;
 
-  && > .button-container > button {
+    && .button-container {
+      display: flex;
+      gap: 5px;
+    }
+
+    && > .button-container > button {
+      padding: 5px;
+      background-color: black;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+  } 
+
+  && > .task-action > button {
+    width: 70px;
+    padding: 10px;
+    height: 40px;
     padding: 5px;
     background-color: black;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0px 0px 0px 0px;
   }
 }
 
-.task-container:last-child {
-  border-radius: 0px 0px 10px 10px
+.task-container:last-child .complete-button:last-child {
+  border-radius: 0px 0px 10px 0px;
+}
+
+.task-container:last-child .task-content {
+  border-radius: 0px 0px 0px 10px;
 }
 
 .background {

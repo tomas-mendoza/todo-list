@@ -29,7 +29,7 @@ export default function EditModal({ id, isOpen, saveEdit, close, tasks }: EditMo
   return (
     <div className="background" id={isOpen ? 'show-background' : 'close-background'} onClick={close}>
       <div className="modal" id={isOpen ? 'show' : 'close'} onClick={(e) => e.stopPropagation()}>
-        <input type="text" className="edit-input" placeholder={tasks[id].name}  onChange={handleInput} ref={inputRef} />
+        <input type="text" className="edit-input" placeholder={tasks.length > 0 ? tasks[id].name : ''}  onChange={handleInput} ref={inputRef} />
         <button onClick={handleEdit} className="edit-button">Edit</button>
       </div>
     </div>

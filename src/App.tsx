@@ -50,6 +50,13 @@ export default function App() {
     setModalState(newModalState);
   }
 
+  const handleComplete = (id: number) => {
+    const newTasks: Task[] = [... tasks];
+    newTasks[id].status = 'finished';
+    setTasks(newTasks);
+    localStorage.setItem('tasks', JSON.stringify(newTasks));
+  }
+
   return (
     <>
       <main>
@@ -60,11 +67,16 @@ export default function App() {
         <div className="tasks-container">
           {
             tasks.map((task, index) => (
-              <div className='task-container' key={index}>
-                <p>{ task.name }</p>
-                <div className="button-container">
-                  <button onClick={() => handleEdit(index)}>Edit</button>
-                  <button onClick={() => handleDelete(index)}>Delete</button>
+              task.status === 'pending' && <div className='task-container' key={index}>
+                <div className='task-content'>
+                  <p>{ task.name }</p>
+                  <div className="button-container">
+                    <button onClick={() => handleEdit(index)}>Edit</button>
+                    <button onClick={() => handleDelete(index)}>Delete</button>
+                  </div>
+                </div>
+                <div className='task-action'>
+                  <button className='complete-button' onClick={() => handleComplete(index)}>complete</button>
                 </div>
               </div>
             ))
