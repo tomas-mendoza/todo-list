@@ -1,8 +1,8 @@
 import { useRef, useState, type FormEvent } from 'react'
-import { Task } from './types/Task';
-import EditModal from './components/EditModal';
+import { Task } from '../../types/Task';
+import EditModal from '../../components/EditModal';
 
-export default function App() {
+export default function Home() {
   const [tasks, setTasks] = useState<Task[]>(localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')!) : []);
   const [modalState, setModalState] = useState<boolean>(false);
   const [selectedId, setSelectedId] = useState<number>(0);
@@ -51,8 +51,7 @@ export default function App() {
   }
 
   const handleComplete = (id: number) => {
-    const newTasks: Task[] = [... tasks];
-    newTasks[id].status = 'finished';
+    const newTasks: Task[] = tasks.filter((_, index) => index !== id);
     setTasks(newTasks);
     localStorage.setItem('tasks', JSON.stringify(newTasks));
   }
